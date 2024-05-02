@@ -1,42 +1,45 @@
-const readline = require('readline');
+//Define the calculator object
+var calculator = {
+    //Define the current value of the calculator
+    currentValue: 0,
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+    //Add a number to the current value
+    add: function(num) {
+        this.currentValue += num;
+    },
 
-rl.question('Enter the first number: ', (firstNumber) => {
-    rl.question('Enter the second number: ', (secondNumber) => {
-        rl.question('Enter the operation (+, -, *, /): ', (operation) => {
-            let result;
+    //Subtract a number from the current value
+    subtract: function(num) {
+        this.currentValue -= num;
+    },
 
-            switch(operation) {
-                case '+':
-                    result = parseFloat(firstNumber) + parseFloat(secondNumber);
-                    break;
-                case '-':
-                    result = parseFloat(firstNumber) - parseFloat(secondNumber);
-                    break;
-                case '*':
-                    result = parseFloat(firstNumber) * parseFloat(secondNumber);
-                    break;
-                case '/':
-                    if(secondNumber != '0') {
-                        result = parseFloat(firstNumber) / parseFloat(secondNumber);
-                    } else {
-                        console.log("Error! Division by zero is not allowed.");
-                        rl.close();
-                        return;
-                    }
-                    break;
-                default:
-                    console.log("Invalid operation! Please enter either +, -, * or /");
-                    rl.close();
-                    return;
-            }
+    //Multiply the current value by a number
+    multiply: function(num) {
+        this.currentValue *= num;
+    },
 
-            console.log(`The result is: ${result}`);
-            rl.close();
-        });
-    });
-});
+    //Divide the current value by a number
+    divide: function(num) {
+        this.currentValue /= num;
+    },
+
+    //Return the current value
+    getCurrentValue: function() {
+        return this.currentValue;
+    },
+
+    //Clear the current value
+    clear: function() {
+        this.currentValue = 0;
+    },
+
+};
+
+//Test the calculator
+calculator.add(5);
+calculator.subtract(2);
+calculator.multiply(3);
+calculator.divide(2);
+calculator.getCurrentValue(); //Returns 6
+calculator.clear();
+
